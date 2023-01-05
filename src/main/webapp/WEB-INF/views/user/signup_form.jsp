@@ -8,16 +8,19 @@
 	<h2>회원 가입하기</h2>
 	<p>My Blog에 친구가 되어주세요</p>
 	<br>
-	<form>
+	<form action="/user/signup-proc" method="post">
 		<div class="mb-3 mt-3">
-			<input type="text" class="form-control" placeholder="Enter username" >
+			<input type="text" name="username" class="form-control" placeholder="Enter username" value="tenco" >
 		</div>
 		<div class="mb-3">
-			<input type="password" class="form-control"
-				placeholder="Enter password" >
+			<input type="password" name="password" class="form-control"
+				placeholder="Enter password"  value="asd123">
 		</div>
 		<div class="mb-3">
-			<input type="email" class="form-control" placeholder="Enter email" >
+			<input type="email" name="email" class="form-control" placeholder="Enter email" value="a@naver.com" >
+		</div>
+		<div class="mb-3">
+			<input type="text" name="profile" class="form-control" placeholder="Enter profile" maxlength="150" value="신입개발자" >
 		</div>
 		<button type="submit" class="btn btn-primary">회원가입</button>
 	</form>
