@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+}
+
+html, body {
+	height: 100%;
+	box-sizing: border-box;
+}
+/* 전체 div  */
+.m--wrap {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+/* 하단 div  */
+.f-wrap {
+	display: flex;
+	flex-direction: column;
+	margin-top: auto;
+}
+
+footer {
+	display: flex;
+	flex-direction: column;
+	background-color: #e9ecef;
+	align-items: center;
+	justify-content: center;
+	padding: 30px;
+}
