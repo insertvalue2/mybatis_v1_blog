@@ -44,8 +44,8 @@ public class TestController {
 	@PostMapping("/user-signup")
 	@ResponseBody
 	public int insertUserTest(@RequestBody User user) {
-		int resultRow = userService.saveUser(user);
-		return resultRow;
+		userService.saveUser(user);
+		return 1;
 	}
 	
 	@DeleteMapping("/user-delete/{userId}")

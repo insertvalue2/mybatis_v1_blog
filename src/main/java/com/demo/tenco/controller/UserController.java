@@ -1,6 +1,7 @@
 package com.demo.tenco.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +29,8 @@ public class UserController {
 	// 로그인 화면
 	// http://localhost:8080/user/sign-in
 	@GetMapping("/sign-in")
-	public String signinForm() {
+	public String signinForm(Model model) {
+		model.addAttribute("isError", false);
 		return "/user/signin_form";
 	}
 	
@@ -39,8 +41,8 @@ public class UserController {
 	 */
 	@PostMapping("/signup-proc")
 	public String signupProc(User user) {
-		int result = userService.saveUser(user);
-		System.out.println("result : " + result);
+		userService.saveUser(user);
+		System.out.println("result : 1");
 		return "redirect:/";
 	}
 }
