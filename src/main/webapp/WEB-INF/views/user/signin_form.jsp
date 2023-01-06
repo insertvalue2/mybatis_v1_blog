@@ -8,16 +8,18 @@
 	<h2>로그인 하기</h2>
 	<p>다양한 기록들을 남기고 공유해 주세요</p>
 	<br>
-	<form>
+	<form action="/user/signin-proc" method="post">
 		<div class="mb-3 mt-3">
 			<input
+				name = "username"
 				type="text" class="form-control"
-				placeholder="Enter username">
+				placeholder="Enter username" value="tenco">
 		</div>
 		<div class="mb-3">
 			<input
+			    name = "password"
 				type="password" class="form-control" 
-				placeholder="Enter password" >
+				placeholder="Enter password" value="asd123" >
 		</div>
 		<button type="submit" class="btn btn-primary">로그인</button>
 	</form>

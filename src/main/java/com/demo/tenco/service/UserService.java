@@ -48,4 +48,13 @@ public class UserService {
 		int result = userDao.update(user);
 		return result;
 	}
+
+	public User searchUser(String username) {
+		User user = userDao.findByUsername(username);
+		return user; 
+	}
+	
 }
+
+
+

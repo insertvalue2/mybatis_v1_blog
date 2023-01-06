@@ -9,5 +9,7 @@ public interface UserDAO {
 	public int insert(User users);
 	public List<User> findAll();
 	public int delete(int id);
-	public int update(User user); 
+	public int update(User user);
+	
+	public User findByUsername(String username);
 }

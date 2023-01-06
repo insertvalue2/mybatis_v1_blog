@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.demo.tenco.model.dto.SigninDTO;
 import com.demo.tenco.model.dto.User;
 import com.demo.tenco.service.UserService;
 
@@ -42,9 +43,22 @@ public class UserController {
 	@PostMapping("/signup-proc")
 	public String signupProc(User user) {
 		userService.saveUser(user);
-		System.out.println("result : 1");
 		return "redirect:/";
 	}
+	
+	
+	/**
+	 * 파싱 전력 object mapper 
+	 * MIME TYPE - form(application/x-www-form-urlencoded)
+	 * @return
+	 */
+	@PostMapping("/signin-proc")
+	public String signinProc(SigninDTO dto) {
+		User user = userService.searchUser(dto.getUsername());
+		System.out.println("user 확인 : " + user.toString());
+		return "redirect:/";
+	}
+	
 }
 
 

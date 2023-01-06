@@ -1,9 +1,12 @@
 package com.demo.tenco.controller;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.demo.tenco.model.dto.SigninDTO;
 import com.demo.tenco.model.dto.User;
 import com.demo.tenco.service.UserService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 @RequestMapping("/test")
@@ -62,6 +68,31 @@ public class TestController {
 		user.setId(userId);
 		int resultRow = userService.updateUser(user); 
 		return resultRow; 
+	}
+	
+	
+	@GetMapping("/chart")
+	public String chartTest(Model model) {
+		List<SigninDTO> lists = new ArrayList<>();
+
+		for (int i = 0; i < 5; i++) {
+			SigninDTO signinDTO  = new SigninDTO();
+			signinDTO.setUsername("a");
+			signinDTO.setPassword("111");
+			lists.add(signinDTO);
+		}
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+		String strList;
+		try {
+			strList = objectMapper.writeValueAsString(lists);
+			model.addAttribute("list", strList);
+			System.out.println(strList);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "test";
 	}
 
 }

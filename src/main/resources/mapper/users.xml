@@ -39,6 +39,14 @@
 		WHERE id = #{id};
 	</delete>
 	
+	<select id="findByUsername"
+	 parameterType="com.demo.tenco.model.dto.User"
+	 resultType="com.demo.tenco.model.dto.User">
+		SELECT *
+		FROM USER
+		WHERE username = #{username};
+	</select>
+	
 </mapper>
   
   
