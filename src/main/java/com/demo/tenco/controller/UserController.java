@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.demo.tenco.model.dto.SigninDTO;
 import com.demo.tenco.model.dto.User;
-import com.demo.tenco.service.Script;
 import com.demo.tenco.service.UserService;
+import com.demo.tenco.utils.Script;
 
 import lombok.RequiredArgsConstructor;
 

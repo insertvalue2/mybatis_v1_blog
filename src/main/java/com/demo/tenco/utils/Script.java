@@ -1,4 +1,4 @@
-package com.demo.tenco.service;
+package com.demo.tenco.utils;
 
 public class Script {
 	
