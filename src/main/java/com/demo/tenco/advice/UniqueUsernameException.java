@@ -4,8 +4,6 @@ import org.springframework.dao.DuplicateKeyException;
 
 import lombok.Getter;
 
-
-
 @Getter
 public class UniqueUsernameException extends DuplicateKeyException {
 

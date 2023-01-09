@@ -1,5 +1,7 @@
 package com.demo.tenco.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.demo.tenco.model.dto.SigninDTO;
 import com.demo.tenco.model.dto.User;
+import com.demo.tenco.service.Script;
 import com.demo.tenco.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -19,6 +22,8 @@ public class UserController {
 	
 	// 의존 주입 (DI 처리) 
 	private final UserService userService;
+	// 의존 주입 (DI 처리)
+	private final HttpSession session;
 	
 	// 회원 가입 화면
 	// http://localhost:8080/user/sign-up
@@ -53,9 +58,19 @@ public class UserController {
 	 * @return
 	 */
 	@PostMapping("/signin-proc")
-	public String signinProc(SigninDTO dto) {
-		User user = userService.searchUser(dto.getUsername());
-		System.out.println("user 확인 : " + user.toString());
+	public String signinProc(SigninDTO dto, Model model) {
+		User principal = userService.searchUser(dto.getUsername());
+		System.out.println("user 확인 : " + principal);
+		if(principal == null) {
+			return "user/signin_form";
+		} 
+		session.setAttribute("principal", principal);
+		return "redirect:/";
+	}
+	
+	@GetMapping("/logout")
+	public String logout() {
+		session.invalidate();
 		return "redirect:/";
 	}
 	

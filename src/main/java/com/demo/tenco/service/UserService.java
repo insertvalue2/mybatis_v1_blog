@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.tenco.advice.UniqueUsernameException;
 import com.demo.tenco.model.dao.UserDAO;
+import com.demo.tenco.model.dto.SigninDTO;
 import com.demo.tenco.model.dto.User;
 
 @Service
@@ -52,6 +53,21 @@ public class UserService {
 	public User searchUser(String username) {
 		User user = userDao.findByUsername(username);
 		return user; 
+	}
+		
+	public User login(SigninDTO signinDTO) {
+		User userEntity = searchUser(signinDTO.getUsername());
+		
+		if(userEntity == null) {
+			return null; 
+		}
+		// userEntity null 이면 오류 코드 발생 위에서 방어적 코드 작성 
+		if(userEntity.getPassword().equals(signinDTO.getPassword())) {
+			return userEntity; 
+		} else {
+			// password 가 다르다면 null return; 
+			return null; 
+		}
 	}
 	
 }

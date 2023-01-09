@@ -83,10 +83,15 @@ public class TestController {
 		}
 		
 		ObjectMapper objectMapper = new ObjectMapper();
+		
+		
 		String strList;
 		try {
 			strList = objectMapper.writeValueAsString(lists);
+			
 			model.addAttribute("list", strList);
+			
+			
 			System.out.println(strList);
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block

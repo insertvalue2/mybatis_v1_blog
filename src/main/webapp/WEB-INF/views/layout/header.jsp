@@ -10,6 +10,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="/css/styles.css">
+
 </head>
 <body>
 	<div class="m--wrap">
@@ -26,12 +27,17 @@
 			<div class="collapse navbar-collapse" id="collapsibleNavbar">
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-					<li class="nav-item"><a class="nav-link" href="/user/sign-in">Sign in</a></li>
-					<li class="nav-item"><a class="nav-link" href="/user/sign-up">Sign up</a></li>
-					<li class="m-around"></li>
-					<li class="nav-item"><a class="nav-link" href="/board/list">Blog list</a></li>
-					<li class="nav-item"><a class="nav-link" href="/board/write">Write blog</a></li>
-					
+					<c:choose>
+						<c:when test="${sessionScope.principal eq null}">
+							<li class="nav-item"><a class="nav-link" href="/user/sign-in">Sign in</a></li>
+							<li class="nav-item"><a class="nav-link" href="/user/sign-up">Sign up</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="nav-item"><a class="nav-link" href="/board/list">Blog list</a></li>
+							<li class="nav-item"><a class="nav-link" href="/board/write">Write blog</a></li>
+							<li class="m-around"><a class="nav-link" href="/user/logout">logout</a></li>	
+						</c:otherwise>
+					</c:choose>	
 				</ul>
 			</div>
 		</nav>
