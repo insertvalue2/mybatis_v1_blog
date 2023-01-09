@@ -21,6 +21,12 @@
 				type="password" class="form-control" 
 				placeholder="Enter password" value="asd123" >
 		</div>
+		<span> 
+		<c:if test="${isNotSignin}">
+				<p id="valid" class="alert alert-danger">잘못된 요청입니다</p>
+			</c:if>
+		</span>
+		
 		<button type="submit" class="btn btn-primary">로그인</button>
 	</form>
 </div>

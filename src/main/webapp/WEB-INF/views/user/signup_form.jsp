@@ -20,7 +20,8 @@
 		<div class="mb-3">
 			<input type="text" name="profile" class="form-control" placeholder="Enter profile" maxlength="150" value="신입개발자">
 		</div>
-		<span> <c:if test="${isError}">
+		<span> 
+		<c:if test="${isError}">
 				<p id="valid" class="alert alert-danger">${error.message}</p>
 			</c:if>
 		</span>

@@ -60,8 +60,8 @@ public class UserController {
 	@PostMapping("/signin-proc")
 	public String signinProc(SigninDTO dto, Model model) {
 		User principal = userService.searchUser(dto.getUsername());
-		System.out.println("user 확인 : " + principal);
 		if(principal == null) {
+			model.addAttribute("isNotSignin", true);
 			return "user/signin_form";
 		} 
 		session.setAttribute("principal", principal);
