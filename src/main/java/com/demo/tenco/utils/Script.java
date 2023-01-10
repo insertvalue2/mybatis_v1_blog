@@ -1,12 +1,12 @@
 package com.demo.tenco.utils;
 
-public class Script {
+public  class Script {
 	
 	public static String back(String msg) {
-		// 멀티 스레드 환경에서도 안전하게 동작
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
+		System.out.println("123123123");
 		sb.append("<script>");
-		sb.append("<alert("+msg+")>");
+		sb.append("alert('"+msg+"');");
 		sb.append("history.back();");
 		sb.append("</script>");
 		return sb.toString();

@@ -24,7 +24,7 @@ public class BoardController {
 	private final BoardService boardService;
 
 	// board list
-	@GetMapping({ "", "/", "/index", "/board-list" })
+	@GetMapping({ "", "/", "/index", "/board/list" })
 	public String list(Model model) {
 		List<BoardDTO> list = boardService.selectBoardList();
 		System.out.println(list.get(0).toString());

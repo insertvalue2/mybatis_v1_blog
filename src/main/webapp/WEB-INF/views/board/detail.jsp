@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
-<link rel="stylesheet" href="/css/styles.css">
+<link rel="stylesheet" href="/css/board.css">
 <br>
 <br>
 <div class="container">
@@ -14,7 +14,7 @@
 			<div class="board--btns">
 				<button type="button" id="board--update" class="btn btn-warning">update</button>
 				&nbsp;&nbsp;
-				<button type="button" id="board--delete" class="btn btn-danger">delete</button>
+				<a type="button" href="/api/board/delete/${boardData.id}" id="board--delete" class="btn btn-danger">delete</a>
 			</div>
 		</c:if>
 		<hr>

@@ -34,4 +34,9 @@ public class BoardService {
 		return  boardDAO.findById(boardId);
 	}
 	
+	@Transactional
+	public void deleteBoard(int boardId) {
+		boardDAO.deleteByBoardId(boardId);
+	}
+	
 }

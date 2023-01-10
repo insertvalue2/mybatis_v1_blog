@@ -27,5 +27,11 @@
 		ON user.id = board.userId
 		WHERE board.id = #{boardId};
 	</select>
+	
+	<delete id="deleteByBoardId" parameterType="Integer">
+		DELETE 
+		FROM board
+		WHERE id = ${boardId}
+	</delete>
 
 </mapper>
