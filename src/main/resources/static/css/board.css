@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+.board--info {
+	display: flex;
+	margin-top: 10px;
+	justify-content: space-between;
+}
+
+.board--info>span {
+	color: gray;
+	font-size: 12px;
+	font-style: italic;
+}
+
+.board--content {
+	margin: 10px;
+}
+
+.board--btns {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 16px;
+}
