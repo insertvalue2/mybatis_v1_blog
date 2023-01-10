@@ -26,7 +26,7 @@
 				<c:set var="i" value="${i +1}"></c:set>
 				<tr>
 					<td><c:out value="${i}" /></td>
-					<td><a href="#">${boardItem.title}</a></td>
+					<td><a href="/board/detail/${boardItem.id}">${boardItem.title}</a></td>
 					<td>${boardItem.username}</td>
 				</tr>
 			</c:forEach>

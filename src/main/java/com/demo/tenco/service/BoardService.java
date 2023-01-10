@@ -29,4 +29,9 @@ public class BoardService {
 		return boardDAO.selectAll();
 	}
 	
+	@Transactional
+	public BoardDTO selectById(int boardId) {
+		return  boardDAO.findById(boardId);
+	}
+	
 }

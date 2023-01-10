@@ -9,4 +9,5 @@ import com.demo.tenco.model.dto.BoardDTO;
 public interface BoardDAO {
 	public int insert(BoardDTO boardDTO);
 	public List<BoardDTO> selectAll(); 
+	public BoardDTO findById(int boardId); 
 }

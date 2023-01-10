@@ -2,22 +2,30 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
-  <mapper
-  	namespace="com.demo.tenco.model.dao.BoardDAO"> 
-  	<insert id="insert" 
+
+<mapper namespace="com.demo.tenco.model.dao.BoardDAO">
+	<insert id="insert"
 		parameterType="com.demo.tenco.model.dto.BoardDTO">
 		INSERT INTO
-		board(title, content, userId, createDate) 
-		VALUES( #{title}, #{content}, 1,NOW()	); 
-   	</insert>
-   	
-   	<select id="selectAll"
-   	resultType="com.demo.tenco.model.dto.BoardDTO">
-	   	SELECT *
-		FROM board     
-		LEFT JOIN user 
-		ON user.id = board.userId;     
-   	</select>
-    
-  </mapper>
+		board(title, content, userId, createDate)
+		VALUES( #{title}, #{content}, 1,NOW() );
+	</insert>
+
+	<select id="selectAll"
+		resultType="com.demo.tenco.model.dto.BoardDTO">
+		SELECT *
+		FROM board
+		LEFT JOIN user
+		ON user.id = board.userId;
+	</select>
+
+	<select id="findById" parameterType="Integer"
+		resultType="com.demo.tenco.model.dto.BoardDTO">
+		SELECT *
+		FROM board
+		LEFT JOIN user
+		ON user.id = board.userId
+		WHERE board.id = #{boardId};
+	</select>
+
+</mapper>
