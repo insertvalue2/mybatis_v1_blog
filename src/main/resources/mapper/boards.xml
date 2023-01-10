@@ -11,5 +11,13 @@
 		board(title, content, userId, createDate) 
 		VALUES( #{title}, #{content}, 1,NOW()	); 
    	</insert>
+   	
+   	<select id="selectAll"
+   	resultType="com.demo.tenco.model.dto.BoardDTO">
+	   	SELECT *
+		FROM board     
+		LEFT JOIN user 
+		ON user.id = board.userId;     
+   	</select>
     
   </mapper>

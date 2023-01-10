@@ -11,5 +11,5 @@ public class BoardDTO {
 	private String title; 
 	private String content; 
 	private Timestamp createDate; 
-	
+	private String username; // 작성자 
 }

@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
 <%@ include file="../layout/header.jsp"%>
 
 <div class="container">
@@ -14,7 +13,6 @@
 	</div>
 	<br />
 
-
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -24,11 +22,14 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td>1</td>
-				<td><a href="#">제목입니다</a></td>
-				<td>tencoding</td>
-			</tr>
+			<c:forEach var="boardItem" items="${boardList}">
+				<c:set var="i" value="${i +1}"></c:set>
+				<tr>
+					<td><c:out value="${i}" /></td>
+					<td><a href="#">${boardItem.title}</a></td>
+					<td>${boardItem.username}</td>
+				</tr>
+			</c:forEach>
 		</tbody>
 	</table>
 

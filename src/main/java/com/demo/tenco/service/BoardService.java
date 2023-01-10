@@ -1,5 +1,7 @@
 package com.demo.tenco.service;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,4 +23,10 @@ public class BoardService {
 		// 시간 - 일단 무시 
 		return boardDAO.insert(boardDTO);
 	}
+	
+	@Transactional
+	public List<BoardDTO> selectBoardList() {
+		return boardDAO.selectAll();
+	}
+	
 }
