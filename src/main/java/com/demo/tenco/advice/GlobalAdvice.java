@@ -6,8 +6,10 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.demo.tenco.model.SiteError;
+import com.demo.tenco.utils.Script;
 
 @ControllerAdvice
 public class GlobalAdvice {
@@ -46,6 +48,15 @@ public class GlobalAdvice {
 		model.addAttribute("error", siteError);
 		
 		return "user/signup_form";
+	}
+	
+	
+	// 코드 추가 
+	@ExceptionHandler(value = WrongApproach.class)
+	@ResponseBody // 데이터로 리턴 처리 
+	public String wrongApproachException(WrongApproach e) {
+		// 다른 방식으로 예외 처리를 해 보자. 
+		return Script.back(e.getMessage());
 	}
 
 }
