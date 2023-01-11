@@ -45,4 +45,10 @@ public class BoardService {
 		boardDAO.deleteByBoardId(boardId);
 	}
 	
+	//  코드 추가 	
+	@Transactional
+	public int modifyBoard(BoardDTO boardDTO) {
+		return boardDAO.modifyBoard(boardDTO);
+	}
+	
 }

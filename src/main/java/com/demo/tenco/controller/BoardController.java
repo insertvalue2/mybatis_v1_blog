@@ -56,9 +56,8 @@ public class BoardController {
 		return "board/detail";
 	}
 	
-	//* 코드 추가 
 	@GetMapping("/board/update-form/{boardId}")
-	public String updateForm(@PathVariable int boardId, Model model, HttpSession session) throws WrongApproach {
+	public String updateForm(@PathVariable String boardId, Model model, HttpSession session) {
 		User principal = null; 
 		// 로그인 여부 확인 
 		if(session.getAttribute(Define.PRINCIPAL) == null) {
@@ -66,15 +65,13 @@ public class BoardController {
 		}
 		// 본인 쓴 글 확인
 		principal = (User)session.getAttribute(Define.PRINCIPAL);
-		BoardDTO boardDTO = boardService.selectById(boardId);
+		BoardDTO boardDTO = boardService.selectById(Integer.parseInt(boardId));
 		if(principal.getUsername().equals(boardDTO.getUsername())) {
 			model.addAttribute("boardData", boardDTO);
 			model.addAttribute("userId", principal.getId());
 		} else {
 			throw new WrongApproach("본인이 작성한 글이 아닙니다");
 		}
-		
-		// 데이터 내려주기 
 		return "board/update_form";
 	}
 }

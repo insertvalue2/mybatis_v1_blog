@@ -55,7 +55,7 @@ public class GlobalAdvice {
 	@ExceptionHandler(value = WrongApproach.class)
 	@ResponseBody // 데이터로 리턴 처리 
 	public String wrongApproachException(WrongApproach e) {
-		// 다른 방식으로 예외 처리를 해 보자. 
+		System.out.println("wrongApproachException 실행");
 		return Script.back(e.getMessage());
 	}
 

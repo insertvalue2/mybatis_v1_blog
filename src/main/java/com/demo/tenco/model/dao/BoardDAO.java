@@ -8,8 +8,9 @@ import com.demo.tenco.model.dto.BoardDTO;
 
 @Mapper
 public interface BoardDAO {
-	public int insert(Map<String, Object> map); // 코드 수정
+	public int insert(Map<String, Object> map);
 	public List<BoardDTO> selectAll(); 
 	public BoardDTO findById(int boardId);
 	public void deleteByBoardId(int boardId);
+	public int modifyBoard(BoardDTO board);  // 코드 추가 
 }

@@ -37,7 +37,30 @@ let boardInit = {
 		});
 	},
 	update: function() {
-		alert("update");
+		
+		let boardId = $("#board--id").val();
+		let userId = $("#user--id").val(); 
+		
+		let sendData = {
+			id : boardId,
+			title: $("#title").val(),
+			content: $("#content").val()
+		};
+		
+		$.ajax({
+			type: "PUT",
+			url: "/api/board/update/" + boardId + "/userid/" + userId ,
+			data: JSON.stringify(sendData),
+			contentType: "application/json; charset=utf-8",
+			dataType: "json"
+		}).done(function(data, textStatus, xhr) {
+			if (data.code == 1) {
+				alert(data.message);
+				location.href = "/";
+			}
+		}).fail(function(error) {
+			alert(error.responseText);
+		});
 	},
 	delete: function() {
 		alert("delete");

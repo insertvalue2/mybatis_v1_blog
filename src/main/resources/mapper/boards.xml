@@ -33,5 +33,11 @@
 		FROM board
 		WHERE id = ${boardId}
 	</delete>
+	<!-- 코드 추가  -->
+	<update id="modifyBoard" parameterType="Map" >
+		UPDATE board
+		SET title = #{title}, content = #{content}
+		WHERE id = #{id};
+	</update>
 
 </mapper>

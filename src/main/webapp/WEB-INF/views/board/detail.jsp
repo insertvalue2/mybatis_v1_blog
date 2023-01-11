@@ -12,9 +12,9 @@
 		</div>
 		<c:if test="${isWriter eq 'true'}">
 			<div class="board--btns">
-				<a type="button" href="/board/update-form/${boardData.id}" id="board--update" class="btn btn-warning">update</a>
+				<a type="button" href="/board/update-form/${boardData.id}" class="btn btn-warning">update</a>
 				&nbsp;&nbsp;
-				<a type="button" href="/api/board/delete/${boardData.id}" id="board--delete" class="btn btn-danger">delete</a>
+				<a type="button" href="/api/board/delete/${boardData.id}" class="btn btn-danger">delete</a>
 			</div>
 		</c:if>
 		<hr>
