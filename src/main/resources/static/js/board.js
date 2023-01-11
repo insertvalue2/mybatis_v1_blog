@@ -62,10 +62,6 @@ let boardInit = {
 			alert(error.responseText);
 		});
 	},
-	delete: function() {
-		alert("delete");
-	}
-
 };
 
 boardInit.init();
