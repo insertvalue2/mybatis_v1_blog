@@ -4,7 +4,6 @@ public  class Script {
 	
 	public static String back(String msg) {
 		StringBuilder sb = new StringBuilder();
-		System.out.println("123123123");
 		sb.append("<script>");
 		sb.append("alert('"+msg+"');");
 		sb.append("history.back();");

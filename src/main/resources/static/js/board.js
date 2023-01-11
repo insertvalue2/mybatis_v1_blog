@@ -19,7 +19,7 @@ let boardInit = {
 			title: $("#title").val(),
 			content: $("#content").val()
 		};
-
+	
 		$.ajax({
 			type: "POST",
 			url: "/api/board/save",
@@ -29,12 +29,11 @@ let boardInit = {
 		}).done(function(data, textStatus, xhr) {
 			console.log(data);
 			if (data.code == 1) {
-				alert("글 등록 완료 되었습니다");
-				//location.href = "/";
+				alert(data.message);
+				location.href = "/";
 			}
 		}).fail(function(error) {
-			console.log(error);
-			alert("글 수정에 실패 하였습니다");
+			alert(error.responseText);
 		});
 	},
 	update: function() {

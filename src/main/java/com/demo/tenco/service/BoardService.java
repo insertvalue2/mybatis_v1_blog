@@ -1,6 +1,8 @@
 package com.demo.tenco.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Service;
@@ -18,10 +20,14 @@ public class BoardService {
 	private final BoardDAO boardDAO;
 	
 	@Transactional
-	public int saveBoard(BoardDTO boardDTO) {
-		// userId - fk 일단 무시 
-		// 시간 - 일단 무시 
-		return boardDAO.insert(boardDTO);
+	public int saveBoard(BoardDTO boardDTO,  int userId) {
+		// 코드 수정
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("title", boardDTO.getTitle());
+		map.put("content", boardDTO.getContent());
+		map.put("userId", userId);
+		
+		return boardDAO.insert(map);
 	}
 	
 	@Transactional

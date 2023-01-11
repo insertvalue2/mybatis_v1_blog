@@ -17,6 +17,7 @@ import com.demo.tenco.model.dto.BoardDTO;
 import com.demo.tenco.model.dto.ResponseDto;
 import com.demo.tenco.model.dto.User;
 import com.demo.tenco.service.BoardService;
+import com.demo.tenco.utils.Define;
 import com.demo.tenco.utils.Script;
 
 import lombok.RequiredArgsConstructor;
@@ -31,12 +32,16 @@ public class BoardApiController {
 	// localhost:8080/api/board/save
 	@PostMapping("/save")
 	public ResponseEntity<?> saveBoardProc(@RequestBody BoardDTO boardDTO, HttpServletRequest request) {
-		
-		System.out.println("boardDTO " + boardDTO);
-		// 서비스 로직 요청 ... 
-		// 응답 처리 테스트 
-		int result = boardService.saveBoard(boardDTO);
-		System.out.println("result  확인 : " + result);
+		// 코드 수정 - Map 으로 넣는 방식 배워보기 
+		HttpSession session = request.getSession();
+		User principal = null; 
+		if(session.getAttribute(Define.PRINCIPAL) != null) {
+			principal = (User)session.getAttribute(Define.PRINCIPAL);
+		} else {
+			return ResponseEntity.status(HttpStatus.OK).body("잘못된 접근 입니다");
+		}
+		 
+		int result = boardService.saveBoard(boardDTO, principal.getId());
 		ResponseDto<Integer> responseDto 
 		= new ResponseDto<Integer>(1, "글 등록이 완료 되었습니다", result);
 		return  ResponseEntity.status(HttpStatus.OK).body(responseDto);
