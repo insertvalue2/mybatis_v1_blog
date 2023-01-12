@@ -10,7 +10,7 @@
 			<span>${boardData.createDate} (${boardData.username})</span> <span class="board-urlcopy">URL 복사</span> <input type="text"
 				value="localhost:8080/board/detail/1" id="urlAddress" style="display: none;">
 		</div>
-		<c:if test="${isWriter eq 'true'}">
+		<c:if test="${isWriter eq true}">
 			<div class="board--btns">
 				<a type="button" href="/board/update-form/${boardData.id}" class="btn btn-warning">update</a>
 				&nbsp;&nbsp;

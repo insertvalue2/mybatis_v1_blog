@@ -34,7 +34,7 @@
 						</c:when>
 						<c:otherwise>
 							<li class="nav-item"><a class="nav-link" href="/board/list">Blog list</a></li>
-							<li class="nav-item"><a class="nav-link" href="/board/write">Write blog</a></li>
+							<li class="nav-item"><a class="nav-link" href="/auth/board/write">Write blog</a></li>
 							<li class="m-around"><a class="nav-link" href="/user/logout">logout</a></li>	
 						</c:otherwise>
 					</c:choose>	

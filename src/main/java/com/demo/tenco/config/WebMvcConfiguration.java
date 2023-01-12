@@ -3,9 +3,11 @@ package com.demo.tenco.config;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.demo.tenco.filter.UriTrackingFilter;
+import com.demo.tenco.intercepter.LoginIntercepter;
 
 @Configuration
 public class WebMvcConfiguration implements WebMvcConfigurer {
@@ -20,5 +22,13 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
     }
     
     // 인터셉터 등록 예정 
+    @Override
+	public void addInterceptors(InterceptorRegistry registry) {
 
+		registry.addInterceptor(new LoginIntercepter())
+		.addPathPatterns("/auth/**", "/api/**");
+//		registry.addInterceptor(new HelloIntercepter())
+//		.addPathPatterns("/hello/**");
+		
+	}
 }

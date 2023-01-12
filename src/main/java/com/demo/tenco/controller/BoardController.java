@@ -29,25 +29,25 @@ public class BoardController {
 	@GetMapping({ "", "/", "/index", "/board/list" })
 	public String list(Model model) {
 		List<BoardDTO> list = boardService.selectBoardList();
-		System.out.println(list.get(0).toString());
 		model.addAttribute("boardList", list);
 		return "board/main";
 	}
 
 	// board write form
-	@GetMapping("/board/write")
+	@GetMapping("/auth/board/write")
 	public String write() {
 		return "board/write_form";
 	}
-
-	@GetMapping("/board/detail/{id}")
+	
+	//	코드 수정 
+	@GetMapping("/auth/board/detail/{id}")
 	public String detail(@PathVariable(name = "id") int boardId, Model model, HttpSession session) {
 		
 		User principal = (User)session.getAttribute("principal");
 		BoardDTO boardData = boardService.selectById(boardId);
 		boolean isWriter = false; 
 		if(principal != null) {
-			if(boardData.getUsername().equals(boardData.getUsername())) {
+			if(principal.getUsername().equals(boardData.getUsername())) {
 				isWriter  = true;
 			}
 		}
@@ -56,7 +56,7 @@ public class BoardController {
 		return "board/detail";
 	}
 	
-	@GetMapping("/board/update-form/{boardId}")
+	@GetMapping("/auth/board/update-form/{boardId}")
 	public String updateForm(@PathVariable String boardId, Model model, HttpSession session) {
 		User principal = null; 
 		// 로그인 여부 확인 
