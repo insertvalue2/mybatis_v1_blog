@@ -13,7 +13,7 @@
 			<input
 				name = "username"
 				type="text" class="form-control"
-				placeholder="Enter username" value="tenco">
+				placeholder="Enter username" value="${username}">
 		</div>
 		<div class="mb-3">
 			<input
@@ -26,6 +26,11 @@
 				<p id="valid" class="alert alert-danger">잘못된 요청입니다</p>
 			</c:if>
 		</span>
+		<div class="form-check mb-3">
+			<label class="form-check-label"> 
+				<input id="remember" name="remember"  class="form-check-input" type="checkbox"> Remember me
+			</label>
+		</div>
 		
 		<button type="submit" class="btn btn-primary">로그인</button>
 	</form>
