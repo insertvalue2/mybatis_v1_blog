@@ -3,15 +3,18 @@ package com.demo.tenco.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.websocket.server.PathParam;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.demo.tenco.advice.WrongApproach;
 import com.demo.tenco.model.dto.BoardDTO;
+import com.demo.tenco.model.dto.PagingDTO;
 import com.demo.tenco.model.dto.User;
 import com.demo.tenco.service.BoardService;
 import com.demo.tenco.utils.Define;
@@ -26,10 +29,24 @@ public class BoardController {
 	private final BoardService boardService;
 
 	// board list
-	@GetMapping({ "", "/", "/index", "/board/list" })
-	public String list(Model model) {
-		List<BoardDTO> list = boardService.selectBoardList();
-		model.addAttribute("boardList", list);
+	@GetMapping({ "", "/", "/board/list" })
+	public String list( Model model, String page) {
+		// Tip - int, Integer : 오류 발생 
+		// - String 일 때 오류 발생하지 않음 
+		int limit = 3; 
+		int offset = 0;
+		int pageNumber = 0; 
+		try {
+			pageNumber = Integer.parseInt(page);
+		} catch (Exception e) {
+			System.out.println("예외 발생");
+		}
+		
+		
+		// 코드 수정 
+		//List<BoardDTO> list = boardService.boardList(limit, offset);
+		PagingDTO pagingDTO = boardService.boardList(limit, offset, pageNumber);
+		model.addAttribute("boardList", pagingDTO);
 		return "board/main";
 	}
 

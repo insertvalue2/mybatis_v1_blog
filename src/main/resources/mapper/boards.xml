@@ -17,6 +17,9 @@
 		FROM board
 		LEFT JOIN user
 		ON user.id = board.userId
+		ORDER BY board.id ASC
+		LIMIT #{limit} 
+		OFFSET #{offset} 
 	</select>
 
 	<select id="findById" parameterType="Integer"
@@ -39,5 +42,17 @@
 		SET title = #{title}, content = #{content}
 		WHERE id = #{id};
 	</update>
+	
+	<select id="pagable" resultType="com.demo.tenco.model.dto.PagingDTO">
+		SELECT *, 
+		IF(R.currentPage = 0, 'true', 'false') AS isFirst, 
+		IF(R.currentPage = totalPage, 'true', 'false') AS isLast 
+		FROM ( 
+			SELECT COUNT(*) AS totalCount,
+		    CEIL(COUNT(*) / (#{rowSize}) ) AS totalPage,
+		    #{page} AS currentPage
+		    FROM board
+		) AS R ;
+	</select>
 
 </mapper>
