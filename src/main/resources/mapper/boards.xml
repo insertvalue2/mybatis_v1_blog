@@ -46,7 +46,7 @@
 	<select id="pagable" resultType="com.demo.tenco.model.dto.PagingDTO">
 		SELECT *, 
 		IF(R.currentPage = 0, 'true', 'false') AS isFirst, 
-		IF(R.currentPage = totalPage, 'true', 'false') AS isLast 
+		IF(R.currentPage = (totalPage - 1), 'true', 'false') AS isLast 
 		FROM ( 
 			SELECT COUNT(*) AS totalCount,
 		    CEIL(COUNT(*) / (#{rowSize}) ) AS totalPage,

@@ -46,29 +46,16 @@ public class BoardService {
 	 * @return PagingDTO
 	 */
 	@Transactional
-	public PagingDTO boardList(int limit, int offset, int pageNumber) {
-		// 필요 데이터 
-		// 현재 페이지 번호 
-		// 게시글 시작 번호
+	public PagingDTO boardList(int limit, int offset, int page) {
 		
-		// page 쿼리 들고 오기 
-		PagingDTO pagingDTO = boardDAO.pagable(pageNumber, PagingDTO.rowSize);
-		System.out.println("pagingDTO : " + pagingDTO);
-		
-		
-		// 게시글 리스트 들고 오기
-		// 전체 블로그 리스트 중
-		// limit -> PagingDTO.rowSize 대체 가능
-		// List<BoardDTO> list = boardDAO.selectAll(limit, offset);
-		// 게시글 시작 번호 계산 하기
-		// 1페이지 1번 부터 시작 1 + (rowSize * page )
-		int startNumber = (PagingDTO.rowSize * pageNumber );
-		System.out.println("startNumber : " + startNumber);
-		// 2페이지 시작 번호   1 + (rowSize * page)
-		List<BoardDTO> list = boardDAO.selectAll(limit, startNumber);
+		List<BoardDTO> list = boardDAO.selectAll(limit, offset);
 		System.out.println("list size : " + list.size());
 		System.out.println("list : " + list);
 		
+		// 페이징 처리를 편하게 하기 위해서 동적 쿼리를 만들고 
+		// 결과 집합을 가져와서 DTO에 담아 보자 사용해 보자.  
+		PagingDTO pagingDTO = boardDAO.pagable(page, limit);
+		System.out.println("pagingDTO : " + pagingDTO);
 		return null; 
 	}
 	

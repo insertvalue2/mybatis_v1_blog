@@ -33,12 +33,19 @@
 			</c:forEach>
 		</tbody>
 	</table>
-
+	<!-- page 번호는 0 부터 시작하자  -->
 	<div class="d-flex justify-content-center">
 		<ul class="pagination">
-			<li class='page-item disabled'><a class="page-link" href="#">Prev</a></li>
-			<li class='page-item'><a class='page-link' href="#">1</a></li>
-			<li class='page-item'><a class="page-link" href="#">Next</a></li>
+			<li class='page-item'>
+				<a class="page-link" href="/board/list?page=${page -1}">Prev</a>
+			</li>
+			<li class='page-item'>
+				<!-- page 번호는 표시는 1 부터 보이도록 처리 하자  -->
+				<a class='page-link' href="/board/list?page=${page +1}">${page}</a>
+			</li>
+			<li class='page-item'>
+				<a class="page-link" href="/board/list?page=${page +1}">Next</a>
+			</li>
 		</ul>
 	</div>
 

@@ -30,23 +30,22 @@ public class BoardController {
 
 	// board list
 	@GetMapping({ "", "/", "/board/list" })
-	public String list( Model model, String page) {
-		// Tip - int, Integer : 오류 발생 
-		// - String 일 때 오류 발생하지 않음 
-		int limit = 3; 
-		int offset = 0;
-		int pageNumber = 0; 
-		try {
-			pageNumber = Integer.parseInt(page);
-		} catch (Exception e) {
-			System.out.println("예외 발생");
+	public String list(Integer page, Model model) {
+		if(page == null) {
+			page = 0;
 		}
-		
-		
-		// 코드 수정 
-		//List<BoardDTO> list = boardService.boardList(limit, offset);
-		PagingDTO pagingDTO = boardService.boardList(limit, offset, pageNumber);
+		System.out.println("현재 페이지 번호 :  " + page);
+		// 게시글 select 할 때 limit 활용 
+		// limit 와 offset 은 index 번호가 아니라 1부터 시작하는  갯수 개념에 숫자이다.
+		 
+		int limit = 5; // 한번에 다섯개씩 결과집합 처리 
+		int offset = (page * limit); // 시작 번호  
+		// 0 * 5 --> 0번부터 시작해서 가져 와라 
+		// 1 * 5 --> 숫자는 5 , 가져오는 결과는 위에서 부터 6번째 부터 가져 온다. 
+		// 2 * 5 --> 숫자는 10 , 가져오는 결과는 위에서 부터 11 번째 부터 가져 온다. 
+		PagingDTO pagingDTO = boardService.boardList(limit, offset, page);
 		model.addAttribute("boardList", pagingDTO);
+		model.addAttribute("page", page);
 		return "board/main";
 	}
 
